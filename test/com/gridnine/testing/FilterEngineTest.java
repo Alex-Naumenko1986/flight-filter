@@ -112,4 +112,15 @@ public class FilterEngineTest {
 
         Assertions.assertEquals(expected, result, "Result list is not equal to expected list");
     }
+
+    @Test
+    public void filteringWithSizeAndOffsetShouldReturnCorrectResult() {
+        filterBuilder.addFilter(new FlightDepartureAfterCurrentTimeFilter());
+
+        List<Flight> result = FilterEngine.filter(flights, filterBuilder.getFilters(), 2, 2);
+
+        List<Flight> expected = List.of(flights.get(3), flights.get(4));
+
+        Assertions.assertEquals(expected, result, "Result list is not equal to expected list");
+    }
 }
